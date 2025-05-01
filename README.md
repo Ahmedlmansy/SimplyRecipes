@@ -48,3 +48,4 @@ SimplyRecipes is a modern recipe web application that allows users to explore a 
 For any inquiries, feel free to reach out:
 
 - **GitHub**: Ahmed1mansy
+- **email** : ahmedelmansy579@gmail.com
