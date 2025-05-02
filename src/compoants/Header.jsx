@@ -44,8 +44,9 @@ function Header() {
             </div>
           </div>
           <div className="savedRecipes">
-            <Link to={"/saved-recipes"} className="nav-link">
+            <Link to={"/savedRecipes"} className="nav-link">
               <Badge
+                className="badge-color"
                 color="default"
                 badgeContent={savedRecipes.length}
                 showZero
