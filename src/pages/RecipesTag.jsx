@@ -58,7 +58,7 @@ function RecipesTag() {
                     <h5>{recipe.title}</h5>
                     <p>Prep : {recipe.readyInMinutes}min</p>
                     <div
-                      className="saved-icon"
+                      className="saved-icon "
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(toggleSavedRecipe(recipe));
