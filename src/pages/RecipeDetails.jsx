@@ -6,8 +6,18 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useEffect, useState } from "react";
 import { getRecipeDetails } from "../services/api";
 import { Link, useParams } from "react-router-dom";
-
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSavedRecipe } from "../rtk/slices/saveRecipes-slice";
 function RecipeDetails() {
+  const dispatch = useDispatch();
+  const savedRecipes = useSelector((state) => state.saveRecipes);
+  const checkSavedRecipe = (recipe) => {
+    return savedRecipes.some((item) => item.id === recipe.id);
+  };
+
+  //
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,7 +71,24 @@ function RecipeDetails() {
               alt={recipeData.title || "Recipe Image"}
             />
             <article className="recipe-info">
-              <h2>{recipeData.title || "No Title Available"}</h2>
+              <h2>
+                {recipeData.title || "No Title Available"}
+                <div
+                  className="saved-icon"
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(toggleSavedRecipe(recipeData));
+                  }}
+                >
+                  {checkSavedRecipe(recipeData) ? (
+                    <BookmarkAddedIcon className="added" />
+                  ) : (
+                    <BookmarkAddIcon />
+                  )}
+                </div>
+              </h2>
+
               <p>
                 {recipeData.summary
                   ? recipeData.summary.replace(/<[^>]+>/g, "")

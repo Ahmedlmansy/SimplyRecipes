@@ -4,8 +4,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getRandomRecipes } from "../services/api";
 import NavTags from "../compoants/TagsCompoant";
-
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSavedRecipe } from "../rtk/slices/saveRecipes-slice";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 function Home() {
+  const dispatch = useDispatch();
+  const savedRecipes = useSelector((state) => state.saveRecipes);
+  const checkSavedRecipe = (recipe) => {
+    return savedRecipes.some((item) => item.id === recipe.id);
+  };
+
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     getRandomRecipes()
@@ -38,13 +47,25 @@ function Home() {
                   className="recipe"
                   key={recipe.id}
                 >
-                  <img
-                    src={`${recipe.image}`}
-                    className="img recipe-img"
-                    alt=""
-                  />
-                  <h5>{recipe.title}</h5>
-                  <p>Prep : {recipe.readyInMinutes}min</p>
+                  <img src={`${recipe.image}`} className="img recipe-img" />
+                  <div className="details">
+                    <h5>{recipe.title}</h5>
+                    <p>Prep : {recipe.readyInMinutes}min</p>
+
+                    <div
+                      className="saved-icon"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(toggleSavedRecipe(recipe));
+                      }}
+                    >
+                      {checkSavedRecipe(recipe) ? (
+                        <BookmarkAddedIcon className="added" />
+                      ) : (
+                        <BookmarkAddIcon />
+                      )}
+                    </div>
+                  </div>
                 </Link>
               );
             })}

@@ -478,7 +478,6 @@ Recipes
 .recipe-img {
   height: 15rem;
   border-radius: var(--borderRadius);
-  margin-bottom: 1rem;
 }
 .recipe h5 {
   margin-bottom: 0;
@@ -744,4 +743,48 @@ Recipe Template
   padding-bottom: 0.75rem;
   color: var(--primary-500);
   text-transform: capitalize;
+}
+
+/* saved Recipes */
+
+.savedRecipes {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 8px;
+  transition: all 0.5s ease-in-out;
+}
+.savedRecipes svg {
+  color: var(--grey-500);
+}
+.savedRecipes .css-2ao5rv-MuiBadge-badge {
+  background: var(--primary-500);
+  color: var(--white);
+}
+.savedRecipes:hover svg {
+  transition: all 0.5s ease-in-out;
+  color: var(--primary-500);
+}
+
+.saved-icon svg {
+  color: var(--grey-500);
+}
+.saved-icon .added {
+  color: var(--primary-500);
+}
+.saved-icon {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+.clear {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.notAvailable {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }

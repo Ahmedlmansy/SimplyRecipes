@@ -1,10 +1,13 @@
 import { useState } from "react";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import { Link } from "react-router-dom";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import { useSelector } from "react-redux";
+import { Badge } from "@mui/material";
 
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
-
+  const savedRecipes = useSelector((state) => state.saveRecipes);
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
@@ -39,6 +42,17 @@ function Header() {
                 contact
               </Link>
             </div>
+          </div>
+          <div className="savedRecipes">
+            <Link to={"/saved-recipes"} className="nav-link">
+              <Badge
+                color="default"
+                badgeContent={savedRecipes.length}
+                showZero
+              >
+                <BookmarksIcon className="nav-icon added" />
+              </Badge>
+            </Link>
           </div>
         </div>
       </nav>
