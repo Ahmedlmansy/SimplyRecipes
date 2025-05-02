@@ -57,7 +57,6 @@ function RecipesTag() {
                   <div className="details">
                     <h5>{recipe.title}</h5>
                     <p>Prep : {recipe.readyInMinutes}min</p>
-
                     <div
                       className="saved-icon"
                       onClick={(e) => {
