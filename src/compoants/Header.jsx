@@ -47,7 +47,12 @@ function Header() {
             <Link to={"/savedRecipes"} className="nav-link">
               <Badge
                 className="badge-color"
-                color="default"
+                sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#645cff",
+                    color: "white",
+                  },
+                }}
                 badgeContent={savedRecipes.length}
                 showZero
               >
